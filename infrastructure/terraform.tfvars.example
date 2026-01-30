@@ -1,0 +1,23 @@
+# Databricks Configuration
+databricks_host       = "https://your-workspace.cloud.databricks.com"
+databricks_token      = "your-databricks-token"
+databricks_account_id = "your-account-id"
+
+# AWS Configuration
+aws_region      = "us-west-2"
+s3_bucket_name  = "your-delta-lake-bucket"
+s3_access_key   = "your-aws-access-key"
+s3_secret_key   = "your-aws-secret-key"
+
+# Environment
+environment = "dev"
+
+# Cluster Configuration
+etl_node_type   = "i3.xlarge"
+batch_node_type = "i3.2xlarge"
+
+# Legacy System
+legacy_db_password = "your-legacy-db-password"
+
+# Notifications
+notification_email = "your-email@example.com"

@@ -1,0 +1,36 @@
+# Python dependencies for Databricks Delta Lake Migration
+
+# PySpark (provided by Databricks runtime)
+# pyspark>=3.3.0
+
+# Delta Lake (provided by Databricks runtime)
+# delta-spark>=2.3.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Testing
+pytest>=7.4.3
+pytest-cov>=4.1.0
+pytest-mock>=3.12.0
+
+# API Clients
+requests>=2.31.0
+
+# Configuration
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Utilities
+python-dateutil>=2.8.2
+pytz>=2023.3
+
+# Development
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0
