@@ -62,11 +62,11 @@ resource "databricks_cluster" "etl_cluster" {
     CostCenter  = "data-engineering"
   }
 
-  init_scripts {
-    dbfs {
-      destination = "dbfs:/databricks/scripts/install-dependencies.sh"
-    }
-  }
+  # init_scripts {
+  #   workspace {
+  #     destination = "/Workspace/scripts/install-dependencies.sh"
+  #   }
+  # }
 }
 
 # Job Cluster for Batch Processing
@@ -92,9 +92,9 @@ resource "databricks_cluster" "batch_cluster" {
   }
 
   custom_tags = {
-    Environment = var.environment
-    Project     = "delta-lake-migration"
-    CostCenter  = "data-engineering"
+    Environment  = var.environment
+    Project      = "delta-lake-migration"
+    CostCenter   = "data-engineering"
     WorkloadType = "batch"
   }
 }
@@ -106,15 +106,19 @@ resource "databricks_sql_endpoint" "analytics" {
   max_num_clusters = 3
 
   tags {
-    custom_tags = {
-      Environment = var.environment
-      Project     = "delta-lake-migration"
+    custom_tags {
+      key   = "Environment"
+      value = var.environment
+    }
+    custom_tags {
+      key   = "Project"
+      value = "delta-lake-migration"
     }
   }
 
-  enable_photon              = true
-  enable_serverless_compute  = true
-  spot_instance_policy       = "COST_OPTIMIZED"
+  enable_photon             = true
+  enable_serverless_compute = true
+  spot_instance_policy      = "COST_OPTIMIZED"
 }
 
 # Secret Scope for Credentials
@@ -146,7 +150,7 @@ resource "databricks_mount" "data_lake" {
   name = "data-lake"
 
   s3 {
-    bucket_name = var.s3_bucket_name
+    bucket_name      = var.s3_bucket_name
     instance_profile = aws_iam_instance_profile.databricks.arn
   }
 }

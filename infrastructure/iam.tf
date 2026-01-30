@@ -175,6 +175,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "delta_lake" {
     id     = "archive-old-data"
     status = "Enabled"
 
+    filter {}
+
     transition {
       days          = 90
       storage_class = "STANDARD_IA"
@@ -193,6 +195,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "delta_lake" {
   rule {
     id     = "delete-incomplete-uploads"
     status = "Enabled"
+
+    filter {}
 
     abort_incomplete_multipart_upload {
       days_after_initiation = 7
